@@ -1,0 +1,115 @@
+//Exam Seating Arrangement...
+
+
+import java.util.*;
+
+class StudentInfo {
+    private String rollNo;
+    private String branch;
+    private int sem;
+    private int year;
+    private String subject;
+    
+    public StudentInfo(String rollNo, String branch, int sem, int year, String subject) {
+        this.rollNo = rollNo;
+        this.branch = branch;
+        this.sem = sem;
+        this.year = year;
+        this.subject = subject;
+    }
+    
+    public String getRollNumber() {
+        return rollNo;
+    }
+    
+    public String getBranch() {
+        return branch;
+    }
+    
+    public int getSemester() {
+        return sem;
+    }
+    
+    public int getYear() {
+        return year;
+    }
+    public String getSubject() {
+        return subject;
+    }
+}
+
+class SeatInfo {
+    private String seatNo;
+    
+    public SeatInfo(String seatNo) {
+        this.seatNo = seatNo;
+    }
+    
+    public String getSeatNo() {
+        return seatNo;
+    }
+}
+
+class Seating{
+    private List<StudentInfo> students;
+    private List<SeatInfo> seats;
+    
+    public Seating() {
+        students = new ArrayList<>();
+        seats = new ArrayList<>();
+    }
+    
+    public void addStudent(StudentInfo student) {
+        students.add(student);
+    }
+    
+    public void addSeat(SeatInfo seat) {
+        seats.add(seat);
+    }
+    
+    public void generateSeating() {
+        
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println("Student :- RollNo: " + students.get(i).getRollNumber() + " is assigned to Seat: " + seats.get(i).getSeatNo());
+        }
+    }
+}
+
+public class ExamSeatingArrangement {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+        Seating seatingArrangement = new Seating();
+        
+        
+        System.out.println("Enter the total no.of students:");
+        int tStudents = scanner.nextInt();
+        
+        System.out.println("Enter the total no.of available seats:");
+        int tSeats = scanner.nextInt();
+        
+        for (int i = 1; i <= tSeats; i++) {
+            seatingArrangement.addSeat(new SeatInfo("Seat " + i));
+        }
+        
+        for (int i = 0; i < tStudents; i++) {
+            System.out.println("Enter the details for Student " + (i + 1) + ":");
+            System.out.println("Roll Number:");
+            String rollNumber = scanner.next();
+            System.out.println("Branch:");
+            String branch = scanner.next();
+            System.out.println("Semester:");
+            int semester = scanner.nextInt();
+            System.out.println("Year:");
+            int year = scanner.nextInt();
+            System.out.println("Subject:");
+            String subject = scanner.next();
+            
+            seatingArrangement.addStudent(new StudentInfo(rollNumber, branch, semester, year, subject));
+        }
+        
+        // Generate seating arrangement
+        seatingArrangement.generateSeating();
+	}
+
+}
