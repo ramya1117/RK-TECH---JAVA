@@ -1,0 +1,43 @@
+//Password Generator
+import java.security.SecureRandom;
+
+public class Password {
+
+	public static void main(String[] args) {
+		int passLength=10;
+		String generatePass=generatePass(passLength);
+		System.out.println("Generated Password:" + generatePass);
+
+	}
+	public static String generatePass(int length) {
+		String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String lower = "abcdefghijklmnopqrstuvwxyz";
+		String number = "0123456789";
+		String special = "!@#$%^&*()_-=+[]{}|;:'\",.<>?/";
+		
+		String allChars = upper + lower + number +  special;
+		
+		SecureRandom random = new SecureRandom();
+		
+		StringBuilder newpassword = new StringBuilder();
+		
+		for(int i=0;i<length;i++) {
+			int rIndex = random.nextInt(allChars.length());
+			char rChar = allChars.charAt(rIndex);
+			newpassword.append(rChar);
+		}
+		
+		return newpassword.toString();
+				
+	    
+
+	}
+
+}
+
+
+Output:
+
+Generated Password:prLLQXcF0{
+
+
